@@ -27,11 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp2", "Windows
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileWriteRead", "FileWriteRead\FileWriteRead.csproj", "{270DC861-4EDE-46DA-A0DF-A2F3F606A1B5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B091B3BB-8D2E-40EA-9B10-D4CFDE153055}"
-	ProjectSection(SolutionItems) = preProject
-		demo.txt = demo.txt
-		README.md = README.md
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRace", "CarRace\CarRace.csproj", "{8DA2E3C8-5A12-46D1-AEF2-08510C107698}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRaceV2", "CarRaceV2\CarRaceV2.csproj", "{561C668F-9D82-4A62-9707-35ADC06DFF39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +85,14 @@ Global
 		{270DC861-4EDE-46DA-A0DF-A2F3F606A1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{270DC861-4EDE-46DA-A0DF-A2F3F606A1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{270DC861-4EDE-46DA-A0DF-A2F3F606A1B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA2E3C8-5A12-46D1-AEF2-08510C107698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA2E3C8-5A12-46D1-AEF2-08510C107698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA2E3C8-5A12-46D1-AEF2-08510C107698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA2E3C8-5A12-46D1-AEF2-08510C107698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{561C668F-9D82-4A62-9707-35ADC06DFF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{561C668F-9D82-4A62-9707-35ADC06DFF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{561C668F-9D82-4A62-9707-35ADC06DFF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{561C668F-9D82-4A62-9707-35ADC06DFF39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
