@@ -11,8 +11,9 @@ namespace FileWriteRead
 {
     public class Program
     {
-        public static string FilePath = "C:\\Users\\FORMATION\\Desktop\\Formation .NET DM\\FirstProject\\FileWriteRead";
-        public static string FileName = "\\FileManagement1.csv";
+        public static string FilePath = 
+            "C:\\Users\\FORMATION\\Desktop\\Formation .NET DM\\FirstProject\\FileWriteRead\\";
+        public static string FileName = "FileManagement1.csv";
         public static List<Person> Persons = new List<Person>();
         public static List<Person> Students = new List<Person>();
 
