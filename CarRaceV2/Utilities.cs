@@ -9,7 +9,7 @@ namespace CarRaceV2
 {
     internal static class Utilities
     {
-
+       
         public static int AskNumber(
             string Message,
             int LowestValue = 0,
@@ -38,10 +38,20 @@ namespace CarRaceV2
 
         }
 
-        public static void writeOnFile(string text)
+        public static void writeOnFile(
+            string FilePath,
+            string FileName, 
+            string text)
+
         {
-
-        }  
-
+            using StreamWriter? MyStream = new StreamWriter(
+                FilePath + FileName,
+                false,
+                Encoding.UTF8);
+            {
+                    Console.WriteLine($"\n RACE LOG: {text}");
+                    MyStream.WriteLine(text);
+            }
+        }
     }
 }

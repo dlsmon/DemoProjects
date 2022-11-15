@@ -1,9 +1,14 @@
-﻿namespace CarRaceV2
+﻿using System.Linq;
+
+namespace CarRaceV2
 {
     public class Program
     {
 
         // global variables
+        public static string FilePath = "C:\\Users\\FORMATION\\Desktop\\Formation .NET DM\\FirstProject\\CarRaceV2\\";
+        public static string FileName = "CarRaceLog." + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’-’mm’-’ss")+".csv";
+
         const int ViewWidth = 110;
         const int ViewHeight = 35;
         const int TrackLineOrigin = 6;
@@ -19,24 +24,54 @@
         static List<Vehicle> Racers = new List<Vehicle>();
         static Random rnd = new Random();
 
+        static string logmessage = "";
+
         public static void Main()
         {
+            showMenu();
+        }
 
-            InitializeData();
-            StartProgram();
-            PrepareRace();
-            DrawTrack(NumberOfRacers, OriginY:TrackLineOrigin);
-            ShowRacers();
-            RaceInProgress();
-            RaceFinished();
+        private static void showMenu()
+        {
+            Console.WriteLine("Welcome to the Car Race Game\n");
+            Console.WriteLine("Press '1' to play the Game");
+            Console.WriteLine("Press '2' to quit");
+            Console.WriteLine("Press '3' to run past Car Race Games");
+            Console.WriteLine("Which option:");
 
-            // fin du programme
-            Console.SetCursorPosition(0, 32);
-            Console.WriteLine("Entrée pour terminer.");
-            Console.ReadLine();
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    playGame();
+                    break;
+                case "2":
+                    Console.WriteLine("See you next time!");
+                    break;
+                case "3":
+                    Console.WriteLine("Which file");
+                    break;
+                default:
+                    Console.WriteLine("Enter a valid input");
+                    showMenu();
+                    break;
+            }
 
         }
 
+        private static void playGame()
+        {
+            InitializeData();
+            StartProgram();
+            PrepareRace();
+            DrawTrack(NumberOfRacers, OriginY: TrackLineOrigin);
+            ShowRacers();
+            RaceInProgress();
+            RaceFinished();
+            //Write log to file
+            Utilities.writeOnFile(FilePath, FileName, logmessage);
+            // fin du programme
+        }
 
         private static void InitializeData()
         {
@@ -71,6 +106,8 @@
         {
 
             Console.WriteLine("\nPréparation de la course.");
+            
+           
 
             // demander le nombre de particiants
             NumberOfRacers = Utilities.AskNumber(
@@ -91,6 +128,8 @@
                 MinimumRaceLength,
                 MaximumRaceLength) * 1000;
 
+            logmessage += $"{NumberOfRacers}.";
+            logmessage += $"{RaceLength}.";
         }
 
         private static void ShowRacers(int Round = 0)
@@ -101,10 +140,18 @@
             else
                 Message = $"\nListe des {Racers.Count} participants :{new string(' ', 50)}";
 
+            
             Console.SetCursorPosition(0, TrackLineOrigin + Racers.Count + 2);
+            
             Console.WriteLine(Message);
             foreach (Vehicle Racer in Racers)
             {
+                if (Round-1>=0 )
+                {
+                    logmessage += $"v.{Racer.UniqueNumberInRace}.";
+                    logmessage += $"p.{Racer.DistanceFromOrigin}.";
+                }
+                
                 Racer.DisplayData(Round > 0);
                 Racer.Draw(RaceLength);
             }
@@ -121,8 +168,10 @@
             int ArrivedRacers = 0;
             while (ArrivedRacers < Racers.Count)
             {
+                logmessage += $"round.{Round}.";
                 Round++;
                 ShowRacers(Round);
+                
 
                 // move vehicles
                 foreach (Vehicle Racer in Racers)

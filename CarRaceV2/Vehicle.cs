@@ -21,7 +21,9 @@
         public int DistanceFromOrigin { get; set; } = 0;
         public int UniqueNumberInRace { get; set; } = 0;
         public int PodiumNumber { get; set; } = 0;
+
         public string Image { get; set; } = "|  ►";
+
 
         #endregion
 
@@ -90,7 +92,6 @@
             int RandomFactor, 
             int RaceLength)
         {
-
             // random factor is a %
             int RandomDistance = HorsePower * RandomFactor / 100;
 
@@ -107,7 +108,7 @@
             // check if vehicle has arrived
             if (DistanceFromOrigin >= RaceLength)
             {
-                DistanceFromOrigin = RaceLength;   
+                DistanceFromOrigin = RaceLength;//100%    
                 NextPodiumNumber++;
                 PodiumNumber = NextPodiumNumber;
             }
@@ -125,7 +126,6 @@
             Console.Write($"{new string(' ', PositionOnTrack)}{Image}");
             Console.ResetColor();
         }
-
         #endregion
 
     }
