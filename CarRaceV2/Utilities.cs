@@ -38,5 +38,10 @@ namespace CarRaceV2
 
         }
 
+        public static void writeOnFile(string text)
+        {
+
+        }  
+
     }
 }
