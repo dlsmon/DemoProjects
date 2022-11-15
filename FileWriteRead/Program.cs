@@ -60,10 +60,8 @@ namespace FileWriteRead
                     $"{Person.BirthYear}" 
                     );
             }
-            
             MyStream.Close();
             MyStream.Dispose();
-
             Console.WriteLine("Le fichier {FileName} était écrit!"); 
         }
 

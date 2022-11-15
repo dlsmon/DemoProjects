@@ -25,7 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POOEX2", "POOEX2\POOEX2.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp2", "WindowsFormsApp2\WindowsFormsApp2.csproj", "{9747E9FF-737A-4956-8604-C455073CFCE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileWriteRead", "FileWriteRead\FileWriteRead.csproj", "{270DC861-4EDE-46DA-A0DF-A2F3F606A1B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileWriteRead", "FileWriteRead\FileWriteRead.csproj", "{270DC861-4EDE-46DA-A0DF-A2F3F606A1B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B091B3BB-8D2E-40EA-9B10-D4CFDE153055}"
+	ProjectSection(SolutionItems) = preProject
+		demo.txt = demo.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
