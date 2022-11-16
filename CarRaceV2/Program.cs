@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Drawing;
+using System.Linq;
+using System.Runtime;
 
 namespace CarRaceV2
 {
@@ -6,7 +8,7 @@ namespace CarRaceV2
     {
 
         // global variables
-        public static string FilePath = "C:\\Users\\FORMATION\\Desktop\\Formation .NET DM\\FirstProject\\CarRaceV2\\";
+        public static string FilePath = "C:\\Users\\FORMATION\\Desktop\\Formation .NET DM\\FirstProject\\CarRaceV2\\history\\";
         public static string FileName = "CarRaceLog." + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’-’mm’-’ss")+".csv";
 
         const int ViewWidth = 110;
@@ -26,6 +28,10 @@ namespace CarRaceV2
 
         static string logmessage = "";
 
+        public static int numberOfHistoryfiles = 3;
+        public static String[] historyFiles = new String[numberOfHistoryfiles];
+        private static int pagination = 1;
+
         public static void Main()
         {
             showMenu();
@@ -33,10 +39,10 @@ namespace CarRaceV2
 
         private static void showMenu()
         {
-            Console.WriteLine("Welcome to the Car Race Game\n");
-            Console.WriteLine("Press '1' to play the Game");
-            Console.WriteLine("Press '2' to quit");
-            Console.WriteLine("Press '3' to run past Car Race Games");
+            Console.WriteLine("\nWelcome to the Car Race Game\n");
+            Console.WriteLine("Press '1' to play a NEW GAME");
+            Console.WriteLine("Press '2' to replay a previous game");
+            Console.WriteLine("Press '3' to quit");
             Console.WriteLine("Which option:");
 
 
@@ -46,17 +52,90 @@ namespace CarRaceV2
                     playGame();
                     break;
                 case "2":
-                    Console.WriteLine("See you next time!");
+                    Console.WriteLine("Which game");
+                    showHistoryFiles();
+                    askHistoryFile(); 
                     break;
                 case "3":
-                    Console.WriteLine("Which file");
+                    Console.WriteLine("See you next time!");
+                    break;
+                default:
+                    Console.WriteLine("\n    Enter a valid input!\n");
+                    showMenu();
+                    break;
+            }
+
+        }
+
+        private static void askHistoryFile()
+        {
+            Console.WriteLine("\nChoose which file game to replay:");
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    openFileGame(historyFiles[numberOfHistoryfiles * pagination - 3]);
+                    //DrawTrack(NumberOfRacers, OriginY: TrackLineOrigin);
+                    Console.WriteLine(historyFiles[numberOfHistoryfiles*pagination -3]);
+                    break;
+                case "2":
+                    Console.WriteLine(historyFiles[numberOfHistoryfiles * pagination - 2]);
+                    break;
+                case "3":
+                    Console.WriteLine(historyFiles[numberOfHistoryfiles * pagination -1]);
+                    break;
+                case "+":
+                    pagination++;
+                    askHistoryFile();
                     break;
                 default:
                     Console.WriteLine("Enter a valid input");
                     showMenu();
                     break;
             }
+        }
 
+        private static void openFileGame(string FilePath)
+        {
+            //str=xpath.replaceAll("\\.", "/*/"); 
+            using StreamReader? MyStream = new StreamReader(FilePath);
+                {
+                string Result = MyStream.ReadLine();
+                while (Result != null)
+                {
+                    string[] StudentData = Result.Split(".");
+                    Result = MyStream.ReadLine();
+                }
+            }
+
+                Console.WriteLine();
+                Console.WriteLine(MyStream.ReadLine());
+                Console.WriteLine(MyStream.ReadLine());
+                Console.WriteLine(MyStream.ReadLine());
+                Console.WriteLine(MyStream.ReadLine());
+            
+        }
+
+        private static void showHistoryFiles()
+        {
+            string path = @"C:\Users\FORMATION\Desktop\Formation .NET DM\FirstProject\CarRaceV2\history";
+
+            string[] files = Directory.GetFiles(path);
+            // string filename = Directory.GetFiles(path);
+
+            int n = 0;
+
+            foreach (string file in files)
+            {
+                
+                if (n < numberOfHistoryfiles)
+                {
+                    
+                    historyFiles[n] = file;
+                     Console.WriteLine($"File {n+1} - {Path.GetFileName(file)}");
+                }
+                n++;
+
+            }
         }
 
         private static void playGame()
@@ -68,9 +147,8 @@ namespace CarRaceV2
             ShowRacers();
             RaceInProgress();
             RaceFinished();
-            //Write log to file
-            Utilities.writeOnFile(FilePath, FileName, logmessage);
             // fin du programme
+            showMenu();
         }
 
         private static void InitializeData()
@@ -208,6 +286,8 @@ namespace CarRaceV2
             {
                 Racer.DisplayData(true, true);
             }
+            //Write log to file
+            Utilities.writeOnFile(FilePath, FileName, logmessage);
         }
 
 
