@@ -34,6 +34,7 @@ namespace CarRaceV2
 
         public static void Main()
         {
+            InitializeData();
             showMenu();
         }
 
@@ -97,7 +98,7 @@ namespace CarRaceV2
         private static void openFileGame(string FilePath)
         {
             //str=xpath.replaceAll("\\.", "/*/"); 
-            using StreamReader? MyStream = new StreamReader(FilePath);
+                using StreamReader? MyStream = new StreamReader(FilePath);
                 {
                 string Result = MyStream.ReadLine();
                 while (Result != null)
@@ -112,7 +113,6 @@ namespace CarRaceV2
                 Console.WriteLine(MyStream.ReadLine());
                 Console.WriteLine(MyStream.ReadLine());
                 Console.WriteLine(MyStream.ReadLine());
-            
         }
 
         private static void showHistoryFiles()
@@ -140,7 +140,7 @@ namespace CarRaceV2
 
         private static void playGame()
         {
-            InitializeData();
+            
             StartProgram();
             PrepareRace();
             DrawTrack(NumberOfRacers, OriginY: TrackLineOrigin);
